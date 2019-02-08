@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:scrollbars = "vertical"
+	android:layout_height="match_parent">
+	<Button
+		android:text="Manage tracking list"
+		android:layout_width="190.0dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/manageListButton"
+		android:gravity="center"
+		android:freezesText="true"
+		android:layout_gravity="center" />
+	<Button
+		android:text="Search"
+		android:layout_width="135.0dp"
+		android:layout_height="wrap_content"
+		android:id="@+id/searchButton"
+		android:gravity="center"
+		android:freezesText="true"
+		android:layout_gravity="center" />
+	<ScrollView android:layout_width="match_parent" android:layout_height="wrap_content">
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:scrollbars = "vertical"
+			android:id="@+id/resultView"
+			android:textSize="45px" />
+	</ScrollView>
+</LinearLayout>
