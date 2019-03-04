@@ -19,7 +19,6 @@ namespace TestApplication
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
             SetContentView(Resource.Layout.manage_list);
 
             Button backButton = FindViewById<Button>(Resource.Id.backButton);
@@ -29,6 +28,20 @@ namespace TestApplication
                 Intent intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
             };
+
+            FillTrackingCodes();
+        }
+        protected void FillTrackingCodes()
+        {
+            TextView resultBox = FindViewById<TextView>(Resource.Id.trackingView);
+            var currentList = new List<string>();
+            currentList = MainActivity.TrackingCodeList;
+            if (currentList.Any())
+            {
+                resultBox.Text = "";
+                foreach (string code in currentList)
+                    resultBox.Text += code + "\r\n";
+            }
         }
     }
 }

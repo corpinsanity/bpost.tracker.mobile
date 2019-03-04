@@ -23,21 +23,23 @@ namespace TestApplication
     [Activity(Label = "Postman", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        public static List<string> TrackingCodeList = new List<string>();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
-
             Button searchButton = FindViewById<Button>(Resource.Id.searchButton);
             Button manageButton = FindViewById<Button>(Resource.Id.manageListButton);
 
             searchButton.Click += delegate
             {
+                ///Searchbutton has been pressed, calling function Submit
                 Submit();
             };
             manageButton.Click += delegate
             {
+                ///Showing new page to manage the trackinglist
                 Intent intent = new Intent(this, typeof(ManageListActivity));
                 StartActivity(intent);
             };
@@ -47,18 +49,16 @@ namespace TestApplication
         protected void Submit()
         {
             Android.App.AlertDialog.Builder alert = new Android.App.AlertDialog.Builder(this);
-            var trackingField = FindViewById<EditText>(Resource.Id.searchButton);
 
             alert.SetTitle("Confirmation");
-            alert.SetMessage(string.Format("Are you sure you want to track: {0}", trackingField.Text));
+            alert.SetMessage(string.Format("Are you sure you want to track the following codes: ?"));
             alert.SetPositiveButton("Hell yea", (senderAlert, args) =>
             {
                 Toast.MakeText(this, "Searching...", ToastLength.Short).Show();
 
-                var dummyList = new List<string>();
-                dummyList.Add("RP163186281CN");
-                dummyList.Add("LM482350324CN");
-                Search(dummyList);
+                TrackingCodeList.Add("RP163186281CN");
+                TrackingCodeList.Add("LM482350324CN");
+                Search(TrackingCodeList);
             });
 
             alert.SetNegativeButton("Fuck no", (senderAlert, args) =>
